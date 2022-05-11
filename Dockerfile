@@ -41,7 +41,7 @@ RUN npm run build
 FROM base
 
 ENV DATABASE_URL=file:/data/sqlite.db
-ENV PORT="8080"
+ENV PORT="80"
 ENV NODE_ENV="production"
 
 # Set SESSION_SECRET env variable.
@@ -59,5 +59,7 @@ COPY --from=build /myapp/node_modules/.prisma /myapp/node_modules/.prisma
 COPY --from=build /myapp/build /myapp/build
 COPY --from=build /myapp/public /myapp/public
 ADD . .
+
+EXPOSE 80
 
 CMD ["bash", "start.sh"]
