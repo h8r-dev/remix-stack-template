@@ -3,15 +3,16 @@ import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 import { Counter, collectDefaultMetrics } from 'prom-client'
 
+let reqsCount: any = null
+
 // Collect metrics in production env
 if (process.env.NODE_ENV === 'production') {
   collectDefaultMetrics()
+  reqsCount = new Counter({
+    name: 'remix_requests_count_total',
+    help: 'Records total FIRST requests of Application service',
+  })
 }
-
-const reqsCount = new Counter({
-  name: 'remix_requests_count_total',
-  help: 'Records total FIRST requests of Application service',
-})
 
 export default function handleRequest(
   request: Request,
@@ -25,7 +26,9 @@ export default function handleRequest(
 
   responseHeaders.set("Content-Type", "text/html");
 
-  reqsCount.inc()
+  if (reqsCount !== null) {
+    reqsCount.inc()
+  }
 
   return new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,

@@ -103,10 +103,10 @@ export default function NewNotePage() {
         )}
       </div>
 
-      <div className="text-right">
+      <div className="text-left">
         <button
           type="submit"
-          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 w-40 h-14 text-2xl mt-5"
         >
           Save
         </button>
