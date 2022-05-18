@@ -183,6 +183,19 @@ export default function LoginPage() {
               </Link>
             </div>
           </div>
+          <div className="flex items-center justify-center">
+            <div className="text-center text-sm text-gray-500">
+              <Link
+                className="text-blue-500 underline"
+                to={{
+                  pathname: "/",
+                  search: searchParams.toString(),
+                }}
+              >
+                Back to homepage
+              </Link>
+            </div>
+          </div>
         </Form>
       </div>
     </div>
